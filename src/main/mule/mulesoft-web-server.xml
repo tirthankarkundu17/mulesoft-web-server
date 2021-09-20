@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e8c42ad1-cf3d-4b7e-96b2-6154ab2a1c02" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="mulesoft-web-serverFlow" doc:id="469c28f2-75fd-4020-8895-ca5e2606a059" >
+		<http:listener doc:name="/" doc:id="f275dc5a-40e2-4675-8363-a3c711e30b1c" config-ref="HTTP_Listener_config" path="/*"/>
+		<http:load-static-resource doc:name="Load frontend application" doc:id="21c6209f-f2f4-47c2-9925-5579942faae4" resourceBasePath="${mule.home}/apps/${app.name}/public"/>
+	</flow>
+</mule>
